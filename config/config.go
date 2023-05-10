@@ -10,7 +10,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Peterpig/mini_godis/lib/logger"
 	"github.com/Peterpig/mini_godis/lib/utils"
 )
 
@@ -68,7 +67,6 @@ func parse(configFile *os.File) *ServerProperties {
 		}
 	}
 
-	logger.Info("%v", rawMap)
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
@@ -124,7 +122,6 @@ func SetupConfig(configFilename string) {
 	defer file.Close()
 
 	Properties = parse(file)
-	logger.Info("%v", Properties)
 
 	Properties.RunID = utils.RandString(40)
 	configFilePath, err := filepath.Abs(configFilename)
