@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"fmt"
 	"net"
 	"os"
 	"os/signal"
@@ -42,7 +43,8 @@ func LinstenAndServerWithSignal(cfg *Config, handler tcp.Handle) (err error) {
 
 	linster, err = net.Listen("tcp", cfg.Address)
 	if err != nil {
-		return err
+		logger.Fatal(fmt.Sprintf("listen err: %v", err))
+		return
 	}
 
 	logger.Info("bind: %s, start listening...", cfg.Address)
